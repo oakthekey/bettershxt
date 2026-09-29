@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  html, body { margin: 0; background: #141416; color: #eee; font-family: "Segoe UI", sans-serif; font-size: 13px; user-select: none; }
+  #title { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; background: #1f1f22; border-bottom: 1px solid #2c2c30; -webkit-app-region: drag; font-weight: 600; }
+  #title button { -webkit-app-region: no-drag; }
+  main { padding: 12px 18px 4px; overflow: hidden; }
+  fieldset { border: 1px solid #2c2c30; border-radius: 8px; padding: 6px 14px 10px; margin: 0 0 10px; }
+  legend { padding: 0 6px; color: #aaa; font-size: 12px; }
+  .row { display: grid; grid-template-columns: 170px 1fr; align-items: center; gap: 10px; margin: 6px 0; }
+  input[type=text], select { all: unset; background: #0f0f10; border: 1px solid #333; border-radius: 6px; padding: 6px 8px; color: #eee; width: 100%; box-sizing: border-box; }
+  input.hotkey { text-align: center; font-family: Consolas, monospace; cursor: pointer; }
+  input.hotkey.recording { border-color: #D97757; color: #D97757; }
+  input[type=range] { width: 100%; }
+  .dir { display: flex; gap: 6px; }
+  .dir input { flex: 1; }
+  button { all: unset; cursor: pointer; padding: 6px 12px; border-radius: 6px; background: rgba(255,255,255,0.08); color: #eee; }
+  button:hover { background: rgba(255,255,255,0.16); }
+  button.primary { background: #D97757; color: #fff; }
+  button.primary:hover { background: #c8664a; }
+  footer { display: flex; justify-content: flex-end; gap: 8px; padding: 6px 18px 16px; }
+  .muted { color: #888; font-size: 11px; }
+  label.check { display: flex; align-items: center; gap: 8px; }
+</style>
+</head>
+<body>
+  <div id="title"><span>BetterShxt Settings</span><button id="x">✕</button></div>
+  <main>
+    <fieldset>
+      <legend>Hotkeys</legend>
+      <div class="row"><span>Region capture</span><input class="hotkey" type="text" data-k="hotkeyRegion" readonly></div>
+      <div class="row"><span>Fullscreen capture</span><input class="hotkey" type="text" data-k="hotkeyFullscreen" readonly></div>
+      <div class="row"><span>Window capture</span><input class="hotkey" type="text" data-k="hotkeyWindow" readonly></div>
+      <div class="row"><span>Scrolling capture</span><input class="hotkey" type="text" data-k="hotkeyScroll" readonly></div>
+      <div class="muted">Click a field, then press the key combo. Esc cancels, Backspace clears.</div>
+    </fieldset>
+    <fieldset>
+      <legend>Saving</legend>
+      <div class="row"><span>Save folder</span><div class="dir"><input type="text" id="saveDir" readonly><button id="pick">Browse</button></div></div>
+      <div class="row"><span>Copy to clipboard</span>
+        <select id="copyMode">
+          <option value="both">Image + file path (recommended)</option>
+          <option value="image">Image only</option>
+          <option value="path">File path only</option>
+          <option value="none">Nothing</option>
+        </select>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>Thumbnail overlay</legend>
+      <div class="row"><span>Auto-dismiss after</span><div><input type="range" id="dismissSeconds" min="0" max="60" step="1"> <span id="dismissLabel"></span></div></div>
+      <div class="row"><span>Max stacked cards</span><div><input type="range" id="maxCards" min="1" max="8" step="1"> <span id="maxLabel"></span></div></div>
+    </fieldset>
+    <fieldset>
+      <legend>System</legend>
+      <label class="check"><input type="checkbox" id="launchAtLogin"> Launch BetterShxt at login</label>
+    </fieldset>
+  </main>
+  <footer>
+    <button id="cancel">Cancel</button>
+    <button class="primary" id="save">Save</button>
+  </footer>
+  <script src="settings.js"></script>
+</body>
+</html>

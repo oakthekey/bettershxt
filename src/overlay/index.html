@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  html, body { margin: 0; height: 100%; overflow: hidden; background: transparent; user-select: none; cursor: crosshair; }
+  #bg { position: fixed; inset: 0; width: 100%; height: 100%; }
+  body.pending > * { visibility: hidden !important; }
+  #dim { position: fixed; inset: 0; background: rgba(0,0,0,0.45); }
+  #sel { position: fixed; display: none; border: 1px solid #fff; box-shadow: 0 0 0 1px rgba(0,0,0,0.6); background-repeat: no-repeat; }
+  #sel.scroll { border-color: #D97757; box-shadow: 0 0 0 2px rgba(217,119,87,0.7); }
+  #sel.win { border: 2px solid #D97757; box-shadow: 0 0 0 9999px rgba(0,0,0,0.45); }
+  #label { position: fixed; display: none; padding: 3px 8px; font: 12px/1.4 "Segoe UI", sans-serif; color: #fff; background: rgba(0,0,0,0.75); border-radius: 4px; pointer-events: none; max-width: 60vw; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  #hint { position: fixed; top: 24px; left: 50%; transform: translateX(-50%); padding: 6px 14px; font: 13px "Segoe UI", sans-serif; color: #fff; background: rgba(0,0,0,0.7); border-radius: 999px; pointer-events: none; }
+  body.win { cursor: pointer; }
+  body.win #dim { display: none; }
+</style>
+</head>
+<body class="pending">
+  <img id="bg" draggable="false">
+  <div id="dim"></div>
+  <div id="sel"></div>
+  <div id="label"></div>
+  <div id="hint">Drag to select area &nbsp;&middot;&nbsp; Esc to cancel</div>
+  <script src="overlay.js"></script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+{
+  "name": "bettershxt",
+  "version": "0.1.0",
+  "description": "Fast screenshot tool for Windows: region, window, fullscreen and scrolling capture with a drag-and-drop thumbnail and annotation editor",
+  "author": "BetterShxt contributors",
+  "homepage": "https://github.com/oakthekey/bettershxt#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oakthekey/bettershxt.git"
+  },
+  "bugs": {
+    "url": "https://github.com/oakthekey/bettershxt/issues"
+  },
+  "main": "src/main.js",
+  "scripts": {
+    "start": "electron .",
+    "icons": "electron assets/make-icons.js",
+    "dist": "electron-builder --win",
+    "pack": "electron-builder --win --dir"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^33.0.0",
+    "electron-builder": "^26.15.3"
+  },
+  "build": {
+    "appId": "com.bettershxt.app",
+    "productName": "BetterShxt",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "src/**/*",
+      "assets/icon.ico",
+      "assets/icon-*.png",
+      "package.json"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "assets/icon.ico",
+      "artifactName": "BetterShxt-Setup-${version}.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "runAfterFinish": true,
+      "shortcutName": "BetterShxt"
+    },
+    "asarUnpack": [
+      "src/winhelper.ps1"
+    ]
+  }
+}
